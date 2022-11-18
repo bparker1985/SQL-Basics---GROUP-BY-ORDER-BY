@@ -1,0 +1,47 @@
+-- GROUP BY & ORDER BY
+-- Remeber to use aliasing with aggreagate functions
+SELECT DISTINCT(Gender)
+FROM EmployeeDemographics
+GROUP BY Gender
+-- This shows the two genders that are in the column
+
+
+SELECT Gender, COUNT(Gender) AS GenderCount
+FROM EmployeeDemographics
+GROUP BY Gender
+-- Now this shows that there were 3 females and 6 males in that column
+
+SELECT Gender, Age, COUNT(Gender) AS GenderCount
+FROM EmployeeDemographics
+GROUP BY Gender, Age
+-- What I want to point out here is that wilth the GenderCount column there is no one that is both the same gender AND the same age
+
+SELECT Gender, Age, COUNT(Gender) AS GenderCount
+FROM EmployeeDemographics
+WHERE Age > 31
+GROUP BY Gender, Age
+-- When we add the WHERE clause we can continue to narrow the fileds we are trying to find. 
+
+SELECT Gender, Age, COUNT(Gender) AS GenderCount
+FROM EmployeeDemographics
+WHERE Age > 31
+GROUP BY Gender, Age
+ORDER BY GenderCount
+-- Since the count is the same, 1, it's acutually ordering it by Age, which sorts in ascending order by default.
+
+SELECT Gender, Age, COUNT(Gender) AS GenderCount
+FROM EmployeeDemographics
+WHERE Age > 31
+GROUP BY Gender, Age
+ORDER BY Age DESC
+-- DESC allows you to change the order to descending order, that is highest to lowest
+
+SELECT *
+FROM EmployeeDemographics
+ORDER BY Age DESC, Gender DESC
+-- This shows that dESC can be used with multiple columns, both Age and Gender are in descending order 
+
+SELECT *
+FROM EmployeeDemographics
+ORDER BY 4 DESC, 5 DESC
+-- This shows that you don't have to use the column names, it's also possible to use the column numbers and it returns the same results
